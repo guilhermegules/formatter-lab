@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-family: monospace;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  height: 100vh;
+}
+
+.key {
+  color: #4e9590;
+}
+
+.value {
+  color: #000000;
+}
+
+.index {
+  color: #bfbfbf;
+}
+
+.bracket {
+  color: #f2cab8;
+  font-weight: bold;
+}
