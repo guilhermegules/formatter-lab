@@ -23,6 +23,16 @@ body {
   overflow: scroll;
 }
 
+.collapsed {
+  display: none;
+}
+
+.collapsed-content::after {
+  content: "...";
+  padding: 0 4px;
+  color: #cb4b16;
+}
+
 .key {
   color: #002b36;
 }

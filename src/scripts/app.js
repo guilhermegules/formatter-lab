@@ -15,7 +15,7 @@ function highlightJSON(value, depth = 0) {
           )}`
       )
       .join(`${newLine}`);
-    return `<span class="bracket">[</span>${newLine}${itens}${newLine}<span class="bracket">${indent}]</span>`;
+    return `<span class="bracket">[</span><span class="json-itens">${newLine}${itens}${newLine}${indent}</span><span class="bracket">]</span>`;
   }
 
   if (value && typeof value === "object") {
@@ -33,12 +33,14 @@ function highlightJSON(value, depth = 0) {
     const entries = Object.entries(value)
       .map(
         ([key, item]) =>
-          `${indent}&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"${key}"</span>: ${showValue(
+          `<span class="json-itens">
+            ${indent}&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"${key}"</span>:${showValue(
             item
-          )}`
+          )} 
+          </span>`
       )
       .join(`${newLine}`);
-    return `&nbsp;${newLine}${entries}${newLine}${indent}`;
+    return `<span class="json-itens">${newLine}${entries}${newLine}${indent}</span>`;
   }
 
   if (value === null) {
@@ -68,6 +70,23 @@ filePicker.addEventListener("change", (e) => {
         content.innerHTML = `<section><div class="json">${highlightJSON(
           jsonData
         )}</div></section>`;
+
+        const collapseBrackets = document.querySelectorAll(".bracket");
+
+        collapseBrackets.forEach((bracket) => {
+          bracket.addEventListener("click", (event) => {
+            const isCollapsed =
+              bracket.nextElementSibling.classList.contains("collapsed");
+
+            if (isCollapsed) {
+              bracket.classList.remove("collapsed-content");
+              bracket.nextElementSibling.classList.remove("collapsed");
+            } else {
+              bracket.nextElementSibling.classList.add("collapsed");
+              bracket.classList.add("collapsed-content");
+            }
+          });
+        });
       } catch (error) {
         console.error("Erro ao ler o arquivo JSON:", error);
       }
