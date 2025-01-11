@@ -16,20 +16,13 @@ body {
   height: 100vh;
 }
 
-.json {
-  height: 100vh;
-  width: 100%;
-  padding: 16px 32px;
-  overflow: scroll;
-}
-
 .collapsed {
   display: none;
 }
 
 .collapsed-content::after {
   content: "...";
-  padding: 0 4px;
+  padding: 0 0 0 4px;
   color: #cb4b16;
 }
 
@@ -48,4 +41,24 @@ body {
 .bracket {
   color: #002b36;
   font-weight: bold;
+}
+
+.json {
+  height: 100vh;
+  width: 100%;
+  padding: 16px 32px;
+  overflow: scroll;
+}
+
+.json .json-itens {
+  display: block;
+  margin-left: 20px;
+}
+
+.json .bracket {
+  cursor: pointer;
+}
+
+.json-container {
+  width: 100%;
 }
