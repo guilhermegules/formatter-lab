@@ -1,7 +1,7 @@
 const filePicker = document.getElementById("file-picker");
 const content = document.getElementById("content");
 
-function highlightJSON(value, depth = 0) {
+function highlightJSON(value: any, depth = 0): string {
   const indentClass = `depth-${depth}`;
 
   if (Array.isArray(value)) {
@@ -10,9 +10,9 @@ function highlightJSON(value, depth = 0) {
         (item, index) =>
           `<div class="json-itens ${indentClass}">
             <span class="index">${index}:</span> ${highlightJSON(
-            item,
-            depth + 1
-          )}
+              item,
+              depth + 1
+            )}
           </div>`
       )
       .join("");
@@ -60,22 +60,22 @@ function appendCollapseEvent() {
   collapseBrackets.forEach((bracket) => {
     bracket.addEventListener("click", () => {
       const isCollapsed =
-        bracket.nextElementSibling.classList.contains("collapsed");
+        bracket.nextElementSibling!.classList.contains("collapsed");
 
       if (isCollapsed) {
         bracket.classList.remove("collapsed-content");
-        bracket.nextElementSibling.classList.remove("collapsed");
+        bracket.nextElementSibling!.classList.remove("collapsed");
         return;
       }
 
-      bracket.nextElementSibling.classList.add("collapsed");
+      bracket.nextElementSibling!.classList.add("collapsed");
       bracket.classList.add("collapsed-content");
     });
   });
 }
 
-filePicker.addEventListener("change", async (e) => {
-  const [file] = e.target.files;
+filePicker!.addEventListener("change", async (e) => {
+  const [file] = (e.target as HTMLInputElement).files!;
 
   if (!file) {
     console.log("Nenhum arquivo selecionado.");
@@ -97,7 +97,7 @@ filePicker.addEventListener("change", async (e) => {
 
   if (!jsonString) return;
 
-  content.innerHTML = `<section class="json-container"><div class="json">${highlightJSON(
+  content!.innerHTML = `<section class="json-container"><div class="json">${highlightJSON(
     JSON.parse(jsonString)
   )}</div></section>`;
 
