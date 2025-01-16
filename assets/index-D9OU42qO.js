@@ -1,0 +1,11 @@
+(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const c of s.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&o(c)}).observe(document,{childList:!0,subtree:!0});function r(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function o(e){if(e.ep)return;e.ep=!0;const s=r(e);fetch(e.href,s)}})();const l=document.getElementById("file-picker"),d=document.getElementById("content");function i(t,n=0){const r=`depth-${n}`;if(Array.isArray(t)){const o=t.map((e,s)=>`<div class="json-itens ${r}">
+            <span class="index">${s}:</span> ${i(e,n+1)}
+          </div>`).join("");return`
+      <span class="bracket">[</span>
+      <div class="${r} json-content">${o}</div>
+      <span class="bracket">]</span>`}if(t&&typeof t=="object"){const o=Object.entries(t).map(([e,s])=>`<div class="json-itens ${r}">
+            <span class="key">"${e}"</span>: ${i(s,n+1)}
+          </div>`).join("");return`
+      <span class="bracket">{</span>
+      <div class="${r} json-content">${o}</div>
+      <span class="bracket">}</span>`}return t===null?'<span class="value">null</span>':typeof t=="number"?`<span class="value">${t}</span>`:typeof t=="string"?`<span class="value">"${t}"</span>`:`<span class="value">${t}</span>`}function p(){document.querySelectorAll(".bracket").forEach(n=>{n.addEventListener("click",()=>{if(n.nextElementSibling.classList.contains("collapsed")){n.classList.remove("collapsed-content"),n.nextElementSibling.classList.remove("collapsed");return}n.nextElementSibling.classList.add("collapsed"),n.classList.add("collapsed-content")})})}l.addEventListener("change",async t=>{const[n]=t.target.files;if(!n){console.log("Nenhum arquivo selecionado.");return}const o=n.stream().getReader(),e=new TextDecoder("utf-8");let s="";for(;;){const{done:c,value:a}=await o.read();if(c)break;s+=e.decode(a,{stream:!0})}s&&(d.innerHTML=`<section class="json-container"><div class="json">${i(JSON.parse(s))}</div></section>`,p())});
