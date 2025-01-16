@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/guilhermegules/formatter-lab.git"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
