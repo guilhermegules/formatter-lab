@@ -61,7 +61,7 @@ function getWebViewContent(formattedJson: string): string {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>FormatterLab</title>
+            <title>Formatter Lab</title>
             <style>
                 :root {
                   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
