@@ -18,7 +18,7 @@
 }
 
 .key {
-  color: #002b36;
+  color: #f4fdff;
 }
 
 .value {
@@ -30,7 +30,7 @@
 }
 
 .bracket {
-  color: #002b36;
+  color: #d0c8c8;
   font-weight: bold;
 }
 
@@ -52,4 +52,23 @@
 
 .json-container {
   width: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  .key {
+    color: #002b36;
+  }
+
+  .value {
+    color: #cb4b16;
+  }
+
+  .index {
+    color: #6c71c4;
+  }
+
+  .bracket {
+    color: #002b36;
+    font-weight: bold;
+  }
 }
