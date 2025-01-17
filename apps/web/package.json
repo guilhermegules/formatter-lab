@@ -11,6 +11,9 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d dist -r https://git:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}"
   },
+  "dependencies": {
+    "@repo/json-utils": "*"
+  },
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "typescript": "~5.6.2",
