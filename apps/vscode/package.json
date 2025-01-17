@@ -28,7 +28,7 @@
     "test": "vscode-test"
   },
   "dependencies": {
-    "json-utils": "*"
+    "@repo/json-utils": "*"
   },
   "devDependencies": {
     "@types/vscode": "^1.96.0",

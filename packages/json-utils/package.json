@@ -1,0 +1,14 @@
+{
+  "name": "@repo/json-utils",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && tsc"
+  },
+  "keywords": [],
+  "author": "Guilherme Gules Moreira",
+  "license": "ISC",
+  "description": ""
+}
