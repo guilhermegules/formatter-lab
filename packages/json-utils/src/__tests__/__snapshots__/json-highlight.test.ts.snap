@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`json highlight functions highlightJSON should format an object 1`] = `
+"
+      <span class="bracket">{</span>
+      <div class="depth-0 json-content"><div class="json-itens depth-0">
+            <span class="key">"key"</span>: <span class="value">"value"</span>
+          </div><div class="json-itens depth-0">
+            <span class="key">"num"</span>: <span class="value">123</span>
+          </div></div>
+      <span class="bracket">}</span>"
+`;
+
+exports[`json highlight functions highlightJSON should format nested objects and arrays 1`] = `
+"
+      <span class="bracket">{</span>
+      <div class="depth-0 json-content"><div class="json-itens depth-0">
+            <span class="key">"obj"</span>: 
+      <span class="bracket">{</span>
+      <div class="depth-1 json-content"><div class="json-itens depth-1">
+            <span class="key">"key"</span>: <span class="value">"value"</span>
+          </div></div>
+      <span class="bracket">}</span>
+          </div><div class="json-itens depth-0">
+            <span class="key">"arr"</span>: 
+      <span class="bracket">[</span>
+      <div class="depth-1 json-content"><div class="json-itens depth-1">
+            <span class="index">0:</span> <span class="value">1</span>
+          </div><div class="json-itens depth-1">
+            <span class="index">1:</span> <span class="value">2</span>
+          </div><div class="json-itens depth-1">
+            <span class="index">2:</span> 
+      <span class="bracket">{</span>
+      <div class="depth-2 json-content"><div class="json-itens depth-2">
+            <span class="key">"nested"</span>: <span class="value">"deep"</span>
+          </div></div>
+      <span class="bracket">}</span>
+          </div></div>
+      <span class="bracket">]</span>
+          </div></div>
+      <span class="bracket">}</span>"
+`;

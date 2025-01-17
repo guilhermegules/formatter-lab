@@ -40,10 +40,6 @@ export function highlightJSON(value: any, depth = 0): string {
     return `<span class="value">null</span>`;
   }
 
-  if (typeof value === "number") {
-    return `<span class="value">${value}</span>`;
-  }
-
   if (typeof value === "string") {
     return `<span class="value">"${value}"</span>`;
   }
