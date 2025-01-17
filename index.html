@@ -5,14 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/formatter-lab/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formatter Lab</title>
-    <script type="module" crossorigin src="/formatter-lab/assets/index-F7unCu_c.js"></script>
-    <link rel="stylesheet" crossorigin href="/formatter-lab/assets/index-D6nOL5Cv.css">
+    <script type="module" crossorigin src="/formatter-lab/assets/index-BE3VSTig.js"></script>
+    <link rel="stylesheet" crossorigin href="/formatter-lab/assets/index-D89AC0v8.css">
   </head>
   <body>
     <main class="content" id="content">
       <h1>JSON Tree Viewer</h1>
-      <p>Simple JSON Viewer that runs completely on-client. No data exchange</p>
-      <input type="file" id="file-picker" />
+      <div class="drop-zone" id="drop-zone">
+        <p>
+          Simple JSON Viewer that runs completely on-client. No data exchange
+        </p>
+        <input type="file" id="file-picker" accept=".json" hidden multiple />
+      </div>
     </main>
 
   </body>
