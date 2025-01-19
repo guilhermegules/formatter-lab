@@ -3,8 +3,6 @@ import * as fs from "fs/promises";
 import { getJsonContainer } from "@repo/json-utils";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "formatter-lab" is now active!');
-
   const disposable = vscode.commands.registerCommand(
     "formatter-lab.showFormattedJson",
     async () => {
