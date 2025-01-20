@@ -1,3 +1,2 @@
 import "./css/style.css";
-
-import "./scripts/json-tree-view";
+import "./adapters/views/json-tree.view";
