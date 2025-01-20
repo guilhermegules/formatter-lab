@@ -55,7 +55,7 @@ dropZone.addEventListener("drop", (e) => {
   const files = e.dataTransfer?.files;
 
   if (!files || files.length === 0) {
-    console.log(
+    fileErrorHandler(
       "No files were dropped. Make sure you're dragging files and not other items."
     );
     return;
@@ -65,11 +65,21 @@ dropZone.addEventListener("drop", (e) => {
 });
 
 async function handleFiles(files: FileList) {
+  console.log(files);
   const [file] = files;
 
   if (!file) {
-    console.log("Nenhum arquivo selecionado.");
+    fileErrorHandler("No files selected.");
     return;
+  }
+
+  if (!file.name.endsWith(".json")) {
+    fileErrorHandler("The selected file is not an JSON.");
+    return;
+  }
+
+  if (dropZone.classList.contains("error")) {
+    cleanErrorMessage();
   }
 
   const stream = file.stream();
@@ -90,4 +100,24 @@ async function handleFiles(files: FileList) {
   content.innerHTML = getJsonContainer(JSON.parse(jsonString));
 
   appendCollapseEvent();
+}
+
+function fileErrorHandler(tipMessage: string) {
+  const tip = document.getElementById("tip")!;
+  tip.classList.add("error");
+  tip.innerText = tipMessage;
+  dropZone.appendChild(tip);
+  dropZone.classList.add("error");
+}
+
+function getDefaultTipMessage() {
+  return "Simple JSON Viewer that runs completely on-client. No data exchange";
+}
+
+function cleanErrorMessage() {
+  const tip = document.getElementById("tip")!;
+  tip.classList.remove("error");
+  tip.innerText = getDefaultTipMessage();
+  dropZone.appendChild(tip);
+  dropZone.classList.remove("error");
 }
