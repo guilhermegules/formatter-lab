@@ -71,4 +71,5 @@ async function handleFiles(files: FileList) {
   if (!jsonString) return;
 
   content.innerHTML = getJsonContainer(JSON.parse(jsonString));
+  appendCollapseEvent();
 }
