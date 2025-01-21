@@ -10,10 +10,10 @@
     <main class="content" id="content">
       <h1>JSON Tree Viewer</h1>
       <div class="drop-zone" id="drop-zone">
-        <p>
+        <input type="file" id="file-picker" accept=".json" hidden multiple />
+        <p id="tip" class="tip">
           Simple JSON Viewer that runs completely on-client. No data exchange
         </p>
-        <input type="file" id="file-picker" accept=".json" hidden multiple />
       </div>
     </main>
 

@@ -1,4 +1,10 @@
 import { getJsonContainer } from "@repo/json-utils";
+import { DEFAULT_TIP_MESSAGE } from "../../core/constants/default-messages.contants";
+import { readFilesUseCase } from "../../core/usecases/read-file.usecase";
+import { fileErrorTemplate } from "./templates/file-error.template";
+import { fileNotExistValidator } from "./validators/file-not-exists.validators";
+import { fileNotJsonValidator } from "./validators/file-not-json.validators";
+import { collapseEvent } from "./events/collapse.event";
 
 const filePicker = document.getElementById("file-picker")!;
 const content = document.getElementById("content")!;
@@ -8,19 +14,7 @@ function appendCollapseEvent() {
   const collapseBrackets = document.querySelectorAll(".bracket");
 
   collapseBrackets.forEach((bracket) => {
-    bracket.addEventListener("click", () => {
-      const isCollapsed =
-        bracket.nextElementSibling!.classList.contains("collapsed");
-
-      if (isCollapsed) {
-        bracket.classList.remove("collapsed-content");
-        bracket.nextElementSibling!.classList.remove("collapsed");
-        return;
-      }
-
-      bracket.nextElementSibling!.classList.add("collapsed");
-      bracket.classList.add("collapsed-content");
-    });
+    bracket.addEventListener("click", () => collapseEvent(bracket));
   });
 }
 
@@ -55,7 +49,7 @@ dropZone.addEventListener("drop", (e) => {
   const files = e.dataTransfer?.files;
 
   if (!files || files.length === 0) {
-    console.log(
+    fileErrorTemplate(
       "No files were dropped. Make sure you're dragging files and not other items."
     );
     return;
@@ -67,27 +61,15 @@ dropZone.addEventListener("drop", (e) => {
 async function handleFiles(files: FileList) {
   const [file] = files;
 
-  if (!file) {
-    console.log("Nenhum arquivo selecionado.");
-    return;
-  }
+  const validators = [
+    () => fileNotExistValidator(file),
+    () => fileNotJsonValidator(file),
+  ];
 
-  const stream = file.stream();
-  const reader = stream.getReader();
-  const decoder = new TextDecoder("utf-8");
-  let jsonString = "";
-
-  while (true) {
-    const { done, value } = await reader.read();
-
-    if (done) break;
-
-    jsonString += decoder.decode(value, { stream: true });
-  }
+  const jsonString = await readFilesUseCase(files, validators);
 
   if (!jsonString) return;
 
   content.innerHTML = getJsonContainer(JSON.parse(jsonString));
-
   appendCollapseEvent();
 }
