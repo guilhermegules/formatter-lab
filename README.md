@@ -1,71 +1,59 @@
 # Formatter Lab
 
-## What's inside?
+Welcome to **Formatter Lab**, a project created with **Turborepo**. The project consists of two parts:
 
-This Turborepo includes the following packages/apps:
+- **Web App**: A web application designed to format and display a variety of file formats.
+- **VSCode Extension**: A VSCode extension that allows you to format and visualize files directly from the editor.
 
-### Apps and Packages
+> Currently, **JSON** is the only supported file format, but the project is structured to easily extend support for additional formats in the future.
 
-- `vscode`: A VSCode extension with the same functions from WEB
-- `web`: Formatter Lab site
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Features
 
-### Utilities
+- **Web App**:
 
-This Turborepo has some additional tools already setup for you:
+  - Format and view JSON files.
+  - Beautiful and responsive UI for a smooth user experience.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- **VSCode Extension**:
 
-### Build
+  - Format JSON files in VSCode with a simple click.
+  - View and edit JSON files with an integrated preview.
 
-To build all apps and packages, run the following command:
+## Project Setup
 
-```
-cd my-turborepo
-pnpm build
-```
+To get started with the project locally, follow the instructions below.
 
-### Develop
+### Prerequisites
 
-To develop all apps and packages, run the following command:
+- [Node.js](https://nodejs.org/) (>=14.x)
+- [Yarn](https://yarnpkg.com/) (recommended) or [npm](https://www.npmjs.com/)
 
-```
-cd my-turborepo
-pnpm dev
-```
+### Install Dependencies
 
-### Remote Caching
+Navigate to the project root directory and install dependencies for both apps:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+cd formatter-lab
+yarn install
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Running the Web App
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+To start the web application:
 
+```bash
+yarn dev
 ```
-npx turbo link
-```
 
-## Useful Links
+The web app will be available at [http://localhost:5173/formatter-lab/](http://localhost:5173/formatter-lab/).
 
-Learn more about the power of Turborepo:
+TODO
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Contribution
+
+We welcome contributions to Formatter Lab. If you would like to help out, please follow these steps:
+
+Fork the repository.
+Create a new branch.
+Make your changes.
+Submit a pull request.
