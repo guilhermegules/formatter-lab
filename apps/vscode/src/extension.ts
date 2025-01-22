@@ -52,7 +52,22 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate() {}
 
+function getColors() {
+  const isLightTheme = vscode.window.activeColorTheme.kind
+    .toString()
+    .includes("light");
+
+  return {
+    keyColor: isLightTheme ? "#1c1c1c" : "#56b6c2",
+    valueColor: isLightTheme ? "#007acc" : "#d19a66",
+    indexColor: isLightTheme ? "#005f5f" : "#c678dd",
+    bracketColor: isLightTheme ? "#000000" : "#e06c75",
+    backgroundColor: isLightTheme ? "#fafafa" : "#1e1e1e",
+  };
+}
+
 function getWebViewContent(formattedJson: string): string {
+  const colors = getColors();
   return `
         <!DOCTYPE html>
         <html lang="en">
@@ -62,17 +77,11 @@ function getWebViewContent(formattedJson: string): string {
             <title>Formatter Lab</title>
             <style>
                 :root {
-                  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-                  line-height: 1.5;
-                  font-weight: 400;
-
-                  color: rgba(255, 255, 255, 0.87);
-                  background-color: #242424;
-
-                  font-synthesis: none;
-                  text-rendering: optimizeLegibility;
-                  -webkit-font-smoothing: antialiased;
-                  -moz-osx-font-smoothing: grayscale;
+                  --key-color: ${colors.keyColor};
+                  --value-color: ${colors.valueColor};
+                  --index-color: ${colors.indexColor};
+                  --bracket-color: ${colors.bracketColor};
+                  --background-color: ${colors.backgroundColor};
                 }
 
                 * {
@@ -80,24 +89,8 @@ function getWebViewContent(formattedJson: string): string {
                   margin: 0;
                 }
 
-                a {
-                  font-weight: 500;
-                  color: #646cff;
-                  text-decoration: inherit;
-                }
-
-                a:hover {
-                  color: #535bf2;
-                }
-
-                body {
-                  min-width: 320px;
-                  min-height: 100vh;
-                }
-
-                h1 {
-                  font-size: 3.2em;
-                  line-height: 1.1;
+                body { 
+                  background-color: var(--background-color);
                 }
 
                 .content {
@@ -116,23 +109,23 @@ function getWebViewContent(formattedJson: string): string {
                 .collapsed-content::after {
                   content: "...";
                   padding: 0 0 0 4px;
-                  color: #cb4b16;
+                  color: var(--value-color);
                 }
 
                 .key {
-                  color: #002b36;
+                  color: var(--key-color);;
                 }
 
                 .value {
-                  color: #cb4b16;
+                  color: var(--value-color);;
                 }
 
                 .index {
-                  color: #6c71c4;
+                  color: var(--index-color);
                 }
 
                 .bracket {
-                  color: #002b36;
+                  color: var(--bracket-color);
                   font-weight: bold;
                 }
 
@@ -158,7 +151,6 @@ function getWebViewContent(formattedJson: string): string {
         </head>
         <body>
           <main class="content" id="content">
-            <h1>JSON Tree Viewer</h1>
             ${formattedJson}
           </main>
         </body>
