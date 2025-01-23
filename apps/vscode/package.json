@@ -30,6 +30,7 @@
     "vscode:prepublish": "yarn run build",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
+    "vscode": "vsce",
     "publish": "yarn vscode:prepublish && yarn vscode:package && yarn vscode:publish",
     "test": "jest"
   },
