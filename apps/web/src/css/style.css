@@ -81,4 +81,22 @@ h1 {
     color: #213547;
     background-color: #ffffff;
   }
+
+  .drop-zone {
+    border: 2px dashed #242424;
+    color: #242424;
+    background-color: #ffffff;
+  }
+
+  .drop-zone:hover {
+    background-color: #242424;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .drop-zone.dragover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: #242424;
+  }
 }
