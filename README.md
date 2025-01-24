@@ -17,7 +17,7 @@ Welcome to **Formatter Lab**, a project created with **Turborepo**. The project 
 - **VSCode Extension**:
 
   - Format JSON files in VSCode with a simple click.
-  - View and edit JSON files with an integrated preview.
+  - View JSON files with an integrated preview.
 
 ## 🚀 Getting started
 
