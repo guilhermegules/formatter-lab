@@ -2,7 +2,7 @@
   "name": "formatter-lab",
   "displayName": "formatter-lab",
   "description": "Show and format a diverse numbers of files",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.96.0"
   },
