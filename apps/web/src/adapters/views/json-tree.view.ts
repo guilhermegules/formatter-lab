@@ -1,5 +1,4 @@
 import { getJsonContainer } from "@repo/json-utils";
-import { DEFAULT_TIP_MESSAGE } from "../../core/constants/default-messages.contants";
 import { readFilesUseCase } from "../../core/usecases/read-file.usecase";
 import { fileErrorTemplate } from "./templates/file-error.template";
 import { fileNotExistValidator } from "./validators/file-not-exists.validators";
