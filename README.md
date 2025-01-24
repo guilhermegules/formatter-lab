@@ -7,7 +7,7 @@ Welcome to **Formatter Lab**, a project created with **Turborepo**. The project 
 
 > Currently, **JSON** is the only supported file format, but the project is structured to easily extend support for additional formats in the future.
 
-## Features
+## ✨ Features
 
 - **Web App**:
 
@@ -19,7 +19,7 @@ Welcome to **Formatter Lab**, a project created with **Turborepo**. The project 
   - Format JSON files in VSCode with a simple click.
   - View and edit JSON files with an integrated preview.
 
-## Project Setup
+## 🚀 Getting started
 
 To get started with the project locally, follow the instructions below.
 
@@ -47,13 +47,21 @@ yarn dev
 
 The web app will be available at [http://localhost:5173/formatter-lab/](http://localhost:5173/formatter-lab/).
 
-TODO
-
-## Contribution
+## 🤝 Contributing
 
 We welcome contributions to Formatter Lab. If you would like to help out, please follow these steps:
 
-Fork the repository.
-Create a new branch.
-Make your changes.
-Submit a pull request.
+1. Fork the repository.
+
+   1. ```bash
+      git clone https://github.com/your-repo/formatter-lab.git
+      ```
+
+2. Create a new branch for your feature or bug fix:
+
+   1. ```bash
+      git checkout -b feature-name
+      ```
+
+3. Make your changes.
+4. Submit a pull request.
