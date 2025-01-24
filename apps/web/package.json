@@ -2,7 +2,7 @@
   "name": "web",
   "homepage": "https://guilhermegules.github.io/formatter-lab",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,6 +17,6 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "typescript": "~5.6.2",
-    "vite": "^6.0.5"
+    "vite": "^6.0.9"
   }
 }

@@ -1,4 +1,4 @@
-# JSON Tree Viewer
+# Formatter Lab Web
 
 A simple JSON viewer that runs completely on the client-side. No data exchange is performed. This project allows you to load a JSON file and view its contents in a formatted and highlighted manner.
 

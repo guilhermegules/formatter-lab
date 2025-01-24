@@ -1,71 +1,61 @@
-# formatter-lab README
+# Formatter Lab - VS Code Extension
 
-This is the README for your extension "formatter-lab". After writing up a brief description, we recommend including the following sections.
+Formatter Lab is a Visual Studio Code extension that allows you to load, format, and display JSON files in a structured and visually appealing way. This extension leverages webviews to render the formatted JSON in a dedicated editor panel, with syntax highlighting and theme-aware colors for a seamless developer experience.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Open JSON Files: Easily select and open JSON files from your system.
+- Formatted Display: Visualize JSON data in a clean, formatted structure.
+- Theme Support: Automatically adapts to your VS Code theme (light or dark).
+- Interactive Interface: Rendered JSON is styled with collapsible brackets and syntax highlighting.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open Visual Studio Code.
+2. Go to the Extensions view by clicking the Extensions icon in the Activity Bar or pressing `Ctrl+Shift+X`.
+3. Search for "Formatter Lab."
+4. Click Install.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).
+2. Search for Formatter Lab: Show Formatted JSON and select the command.
+3. Select a JSON file from your system using the file picker.
+4. The JSON data will be displayed in a formatted, color-coded webview.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Commands
 
-## Extension Settings
+| Command Name                      | Description                                         |
+| --------------------------------- | --------------------------------------------------- |
+| `formatter-lab.showFormattedJson` | Opens a file picker to load and format a JSON file. |
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## JSON Styling
 
-For example:
+The JSON content is styled with the following features:
 
-This extension contributes the following settings:
+- **Key Color:** Matches your theme’s color palette.
+- **Value Color:** Ensures readable distinction for values.
+- **Bracket Collapsibility:** Clickable brackets for better navigation in nested JSON structures.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Extension API
 
-## Known Issues
+### Activate
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+The `activate` function is called when the extension is initialized. It registers the `formatter-lab.showFormattedJson` command.
 
-## Release Notes
+### Deactivate
 
-Users appreciate release notes as you update your extension.
+The `deactivate` function is called when the extension is unloaded.
 
-### 1.0.0
+## Development
 
-Initial release of ...
+To build or extend this extension:
 
-### 1.0.1
+1. Clone this repository.
+2. Run yarn install to install dependencies.
+3. Open the project in VS Code.
+4. Use F5 to launch an Extension Development Host to test your changes.
 
-Fixed issue #.
+## Feedback and Contributions
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Feel free to submit bug reports, feature requests, or contribute to the extension on its GitHub repository.

@@ -62,15 +62,41 @@ h1 {
   color: #242424;
 }
 
+.error {
+  color: rgb(226, 24, 24);
+  border-color: rgb(248, 41, 41);
+}
+
+.drop-zone.error:hover {
+  color: rgb(226, 24, 24);
+  border-color: rgb(248, 41, 41);
+}
+
+.tip {
+  color: inherit;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
+
+  .drop-zone {
+    border: 2px dashed #242424;
+    color: #242424;
+    background-color: #ffffff;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .drop-zone:hover {
+    background-color: #242424;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .drop-zone.dragover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: #242424;
   }
 }
