@@ -1,6 +1,8 @@
 export async function readFilesUseCase(
   files: FileList,
-  validators: (() => boolean)[]
+  validators: (() => boolean)[],
+  onChunk: (chunk: string) => void,
+  onComplete: VoidFunction
 ) {
   const [file] = files;
 
@@ -11,17 +13,16 @@ export async function readFilesUseCase(
   const stream = file.stream();
   const reader = stream.getReader();
   const decoder = new TextDecoder("utf-8");
-  let jsonString = "";
 
   while (true) {
     const { done, value } = await reader.read();
 
     if (done) break;
 
-    jsonString += decoder.decode(value, { stream: true });
+    const chunk = decoder.decode(value, { stream: true });
+
+    onChunk(chunk);
   }
 
-  if (!jsonString) return;
-
-  return jsonString;
+  onComplete();
 }

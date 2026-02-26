@@ -4,6 +4,7 @@ import { fileErrorTemplate } from "./templates/file-error.template";
 import { fileNotExistValidator } from "./validators/file-not-exists.validators";
 import { fileNotJsonValidator } from "./validators/file-not-json.validators";
 import { collapseEvent } from "./events/collapse.event";
+import { createJsonWorker } from "../../core/workers/json-parser-worker.factory";
 
 const filePicker = document.getElementById("file-picker")!;
 const content = document.getElementById("content")!;
@@ -49,7 +50,7 @@ dropZone.addEventListener("drop", (e) => {
 
   if (!files || files.length === 0) {
     fileErrorTemplate(
-      "No files were dropped. Make sure you're dragging files and not other items."
+      "No files were dropped. Make sure you're dragging files and not other items.",
     );
     return;
   }
@@ -65,10 +66,12 @@ async function handleFiles(files: FileList) {
     () => fileNotJsonValidator(file),
   ];
 
-  const jsonString = await readFilesUseCase(files, validators);
+  const worker = createJsonWorker();
 
-  if (!jsonString) return;
-
-  content.innerHTML = getJsonContainer(JSON.parse(jsonString));
-  appendCollapseEvent();
+  await readFilesUseCase(
+    files,
+    validators,
+    (chunk) => worker.postMessage({ type: "process", chunk }),
+    () => worker.postMessage({ type: "complete" }),
+  );
 }
