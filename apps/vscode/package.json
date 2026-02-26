@@ -1,5 +1,5 @@
 {
-  "name": "formatter-lab",
+  "name": "@formatter-lab/vscode",
   "displayName": "formatter-lab",
   "description": "Show and format a diverse numbers of files",
   "version": "1.0.0",
