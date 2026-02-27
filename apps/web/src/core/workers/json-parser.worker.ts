@@ -1,51 +1,63 @@
 let stack: string[] = [];
 let nodeId = 0;
 let buffer = "";
+let batch: object[] = [];
 
 self.onmessage = (e) => {
-  if (e.data.type === "chunk") {
+  if (e.data.type === "process") {
     buffer += e.data.chunk;
     processBuffer();
   }
 
   if (e.data.type === "end") {
-    processBuffer(true);
+    buffer = "";
+    stack = [];
+    nodeId = 0;
+    batch = [];
+    console.log("Parsing complete");
   }
 };
 
-function processBuffer(final = false) {
-  let i = 0;
+function processBuffer() {
+  const tokenRegex =
+    /({|}|\[|\]|"(?:\\.|[^"\\])*"|[: ,]|\d+(?:\.\d+)?|true|false|null)/g;
+  let match: RegExpExecArray | null;
+  let lastIndex = 0;
 
-  while (i < buffer.length) {
-    const char = buffer[i];
+  while ((match = tokenRegex.exec(buffer)) !== null) {
+    const token = match[0];
 
-    if (char === "{") {
-      emitNode("objectStart");
-      stack.push("object");
-    } else if (char === "[") {
-      emitNode("arrayStart");
-      stack.push("array");
-    } else if (char === "}") {
-      emitNode("objectEnd");
+    if (token === "{" || token === "[") {
+      stack.push(token);
+      emit("bracket", token);
+    } else if (token === "}" || token === "]") {
+      emit("bracket", token);
       stack.pop();
-    } else if (char === "]") {
-      emitNode("arrayEnd");
-      stack.pop();
+    } else if (token.startsWith('"')) {
+      const cleanStr = token.slice(1, -1);
+      emit("string", cleanStr);
+    } else if (
+      ["true", "false", "null"].includes(token) ||
+      !isNaN(parseFloat(token))
+    ) {
+      emit("primitive", token);
     }
 
-    i++;
+    lastIndex = tokenRegex.lastIndex;
   }
 
-  buffer = final ? "" : buffer.slice(i);
+  // Keep the unprocessed tail for the next chunk
+  buffer = buffer.slice(lastIndex);
 }
 
-function emitNode(type: string) {
-  postMessage({
-    type: "node",
-    node: {
-      id: nodeId++,
-      type,
-      depth: stack.length,
-    },
+function emit(type: string, value: string) {
+  batch.push({
+    id: nodeId++,
+    type,
+    value,
+    depth: stack.length,
   });
+
+  self.postMessage({ type: "nodes", nodes: batch });
+  batch = [];
 }

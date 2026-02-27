@@ -1,22 +1,14 @@
-import { getJsonContainer } from "@repo/json-utils";
 import { readFilesUseCase } from "../../core/usecases/read-file.usecase";
 import { fileErrorTemplate } from "./templates/file-error.template";
 import { fileNotExistValidator } from "./validators/file-not-exists.validators";
 import { fileNotJsonValidator } from "./validators/file-not-json.validators";
-import { collapseEvent } from "./events/collapse.event";
 import { createJsonWorker } from "../../core/workers/json-parser-worker.factory";
+import { VirtualJsonTree } from "./virtual-json-tree";
 
 const filePicker = document.getElementById("file-picker")!;
 const content = document.getElementById("content")!;
 const dropZone = document.getElementById("drop-zone")!;
-
-function appendCollapseEvent() {
-  const collapseBrackets = document.querySelectorAll(".bracket");
-
-  collapseBrackets.forEach((bracket) => {
-    bracket.addEventListener("click", () => collapseEvent(bracket));
-  });
-}
+const treeViewer = new VirtualJsonTree(content);
 
 filePicker.addEventListener("change", async (e) => {
   const files = (e.target as HTMLInputElement).files;
@@ -67,6 +59,14 @@ async function handleFiles(files: FileList) {
   ];
 
   const worker = createJsonWorker();
+
+  worker.onmessage = (e) => {
+    if (e.data.type === "nodes") {
+      requestAnimationFrame(() => {
+        treeViewer.addNodes(e.data.nodes);
+      });
+    }
+  };
 
   await readFilesUseCase(
     files,
