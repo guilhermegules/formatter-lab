@@ -6,7 +6,7 @@ import { createJsonWorker } from "../../core/workers/json-parser-worker.factory"
 import { VirtualJsonTree } from "./virtual-json-tree";
 
 const filePicker = document.getElementById("file-picker")!;
-const content = document.getElementById("content")!;
+const content = document.getElementById("json-content")!;
 const dropZone = document.getElementById("drop-zone")!;
 const treeViewer = new VirtualJsonTree(content);
 
